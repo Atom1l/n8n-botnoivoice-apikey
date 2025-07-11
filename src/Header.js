@@ -1,10 +1,13 @@
 // Header.js
 import React, { useState } from 'react';
+import { useAuth } from './useAuth';
 import './App.css';
 
 const Header = ({ onLoginClick, user }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
+  const [userDropdownOpen, setUserDropdownOpen] = useState(false);
+  const { logout } = useAuth();
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -12,6 +15,19 @@ const Header = ({ onLoginClick, user }) => {
 
   const toggleLangDropdown = () => {
     setLangDropdownOpen(!langDropdownOpen);
+  };
+
+  const toggleUserDropdown = () => {
+    setUserDropdownOpen(!userDropdownOpen);
+  };
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      setUserDropdownOpen(false);
+    } catch (error) {
+      console.error('Logout failed:', error);
+    }
   };
 
   return (
@@ -44,10 +60,21 @@ const Header = ({ onLoginClick, user }) => {
         </div>
 
         {user ? (
-          <div className="user-info">
+          <div className={`user-info ${userDropdownOpen ? 'active' : ''}`} onClick={toggleUserDropdown}>
             <img src={user.photoURL} alt="Profile" className="user-avatar" />
-            <span>{user.displayName}</span>
-            <small>{user.uid}</small>
+            <div className="user-details">
+              <span className="user-name">{user.displayName}</span>
+              <span className="user-uid">{user.uid}</span>
+            </div>
+            <div className="dropdown-arrow"></div>
+            <div className={`user-dropdown ${userDropdownOpen ? 'show' : ''}`}>
+              <ul>
+                <li><a href="/apikey">API Keys</a></li>
+                <li><a href="#profile">Profile Settings</a></li>
+                <li><a href="#billing">Billing</a></li>
+                <li><button className="logout-btn" onClick={handleLogout}>Log out</button></li>
+              </ul>
+            </div>
           </div>
         ) : (
           <>

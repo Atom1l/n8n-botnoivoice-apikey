@@ -59,18 +59,25 @@ export const useAuth = () => {
 
 
   const logout = async () => {
+    setAuthLoading(true);
+    setError(null);
     try {
       await signOut(auth);
       setUser(null);
+      console.log('✅ Logout successful');
     } catch (error) {
+      console.error('❌ Logout error:', error);
       setError(error.message || 'Logout failed');
+      throw error;
+    } finally {
+      setAuthLoading(false);
     }
   };
 
   return {
     user,
     loading,
-    authLoading,
+    authLoading: authLoading,
     error,
     signInWithGoogle,
     logout
