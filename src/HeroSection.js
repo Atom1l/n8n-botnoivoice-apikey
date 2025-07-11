@@ -2,7 +2,8 @@ import React from 'react';
 import './App.css';
 
 
-const HeroSection = () => {
+const HeroSection = ({ onLoginClick }) => {
+
   return (
     <main className="hero-section">
       <div className="hero-content">
@@ -11,7 +12,10 @@ const HeroSection = () => {
           <h1>Convert Text to Speech with N8N</h1>
           <p>Easily generate realistic voices for every step in your automation process with our n8n node. Choose from over <strong>300 voices</strong> and <strong>10+ languages</strong>. Perfect for voiceovers, ads, educational content, podcasts, articles, lifestyle media, or audiobooks. Easy to use, and generate lifelike voices anytime, anywhere.</p>
           <div className="hero-buttons">
-            <a href="#" className="primary-btn">Try for Free</a>
+            <a href="#" className="primary-btn" onClick={(e) => {
+              e.preventDefault();
+              onLoginClick();
+            }}>Try for Free</a>
           </div>
         </div>
         <div className="hero-image">
