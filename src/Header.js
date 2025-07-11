@@ -11,21 +11,18 @@ const Header = ({ onLoginClick, user }) => {
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
-    // ปิด dropdown อื่นๆ เมื่อเปิด hamburger menu
     setLangDropdownOpen(false);
     setUserDropdownOpen(false);
   };
 
   const toggleLangDropdown = () => {
     setLangDropdownOpen(!langDropdownOpen);
-    // ปิด menu อื่นๆ
     setMenuOpen(false);
     setUserDropdownOpen(false);
   };
 
   const toggleUserDropdown = () => {
     setUserDropdownOpen(!userDropdownOpen);
-    // ปิด menu อื่นๆ
     setMenuOpen(false);
     setLangDropdownOpen(false);
   };
@@ -40,14 +37,16 @@ const Header = ({ onLoginClick, user }) => {
   };
 
   const handleMenuItemClick = () => {
-    setMenuOpen(false); // ปิด menu เมื่อคลิกลิงก์
+    setMenuOpen(false);
   };
+
   return (
     <header className="header">
       <div className="header-left">
         <a href="#" className="logo">
           <img src="/img/botnoi_voice_n8n-logo.png" alt="Logo" />
         </a>
+
         <nav className={`nav-menu ${menuOpen ? 'show' : ''}`}>
           <ul>
             <li><a href="https://voice.botnoi.ai/marketplace/selectvoice" target="_blank" rel="noopener noreferrer" onClick={handleMenuItemClick}>Voice Marketplace</a></li>
@@ -55,6 +54,33 @@ const Header = ({ onLoginClick, user }) => {
             <li><a href="https://voice.botnoi.ai/payment/quote" target="_blank" rel="noopener noreferrer" onClick={handleMenuItemClick}>Pricing <span className="sale-badge">SALE</span></a></li>
             <li><a href="https://botnoigroup.com/th/teamprice" target="_blank" rel="noopener noreferrer" onClick={handleMenuItemClick}>Enterprise Pricing</a></li>
             <li><a href="https://voice.botnoi.ai/" target="_blank" rel="noopener noreferrer" onClick={handleMenuItemClick}>VOICE BOT</a></li>
+
+            {/* ✅ Mobile-only user/login block */}
+            {user ? (
+              <li className="mobile-auth">
+                <div className="user-info">
+                  <img src={user.photoURL} alt="Profile" className="user-avatar" />
+                  <div className="user-details">
+                    <span className="user-name">{user.displayName}</span>
+                    <span className="user-uid">{user.uid}</span>
+                  </div>
+                </div>
+                <button className="logout-btn" onClick={handleLogout}>Log out</button>
+              </li>
+            ) : (
+              <>
+                <li className="mobile-auth">
+                  <a href="#" onClick={(e) => {
+                    e.preventDefault();
+                    onLoginClick();
+                    setMenuOpen(false);
+                  }}>Login</a>
+                </li>
+                <li className="mobile-auth">
+                  <a href="#">Sign Up</a>
+                </li>
+              </>
+            )}
           </ul>
         </nav>
       </div>
@@ -71,35 +97,32 @@ const Header = ({ onLoginClick, user }) => {
           </ul>
         </div>
 
-        {user ? (
-          <div className={`user-info ${userDropdownOpen ? 'active' : ''}`} onClick={toggleUserDropdown}>
-            <img src={user.photoURL} alt="Profile" className="user-avatar" />
-            <div className="user-details">
-              <span className="user-name">{user.displayName}</span>
-              <span className="user-uid">{user.uid}</span>
+        {/* ✅ Desktop-only user/login block */}
+        <div className="desktop-auth">
+          {user ? (
+            <div className={`user-info ${userDropdownOpen ? 'active' : ''}`} onClick={toggleUserDropdown}>
+              <img src={user.photoURL} alt="Profile" className="user-avatar" />
+              <div className="user-details">
+                <span className="user-name">{user.displayName}</span>
+                <span className="user-uid">{user.uid}</span>
+              </div>
+              <div className="dropdown-arrow"></div>
+              <div className={`user-dropdown ${userDropdownOpen ? 'show' : ''}`}>
+                <button className="logout-btn" onClick={handleLogout}>Log out</button>
+              </div>
             </div>
-            <div className="dropdown-arrow"></div>
-            <div className={`user-dropdown ${userDropdownOpen ? 'show' : ''}`}>
-              <ul>
-                <li><a href="/apikey">API Keys</a></li>
-                <li><a href="#profile">Profile Settings</a></li>
-                <li><a href="#billing">Billing</a></li>
-                <li><button className="logout-btn" onClick={handleLogout}>Log out</button></li>
-              </ul>
-            </div>
-          </div>
-        ) : (
-          <>
-            <a href="#" className="login-btn" onClick={(e) => {
-              e.preventDefault();
-              console.log('Login button clicked');
-              onLoginClick();
-            }}>Login</a>
-            <a href="#" className="signup-btn">Sign Up</a>
-          </>
-        )}
+          ) : (
+            <>
+              <a href="#" className="login-btn" onClick={(e) => {
+                e.preventDefault();
+                onLoginClick();
+              }}>Login</a>
+              <a href="#" className="signup-btn">Sign Up</a>
+            </>
+          )}
+        </div>
 
-        <div className="hamburger-menu" onClick={toggleMenu}>
+        <div className="hamburger-menu" style={{ color: '#ff5722', fontSize: '24px' }} onClick={toggleMenu}>
           <i className={`fas ${menuOpen ? 'fa-times' : 'fa-bars'}`}></i>
         </div>
       </div>
