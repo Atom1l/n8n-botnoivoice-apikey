@@ -109,7 +109,10 @@ const Header = ({ onLoginClick, user }) => {
                 e.preventDefault();
                 onLoginClick();
               }}>Login</a>
-              <a href="#" className="signup-btn">Sign Up</a>
+              <a href="#" className="signup-btn" onClick={(e) => {
+                e.preventDefault();
+                onLoginClick();
+              }}>Sign Up</a>
             </>
           )}
         </div>

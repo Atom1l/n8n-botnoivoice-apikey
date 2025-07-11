@@ -10,10 +10,10 @@ import ApiKeySection from './ApiKeySection';
 import { useAuth } from './useAuth';
 import './App.css';
 
-function HomePage() {
+function HomePage({onLoginClick}) {
   return (
     <>
-      <HeroSection />
+      <HeroSection onLoginClick={onLoginClick} />
       <SocialIcons />
     </>
   );
@@ -47,7 +47,7 @@ function AppRoutes() {
         <Routes>
           <Route
             path="/"
-            element={!user ? <HomePage /> : <Navigate to="/apikey" replace />}
+            element={!user ? <HomePage onLoginClick={openLoginModal} /> : <Navigate to="/apikey" replace />}
           />
           <Route
             path="/apikey"
