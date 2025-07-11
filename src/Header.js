@@ -11,14 +11,23 @@ const Header = ({ onLoginClick, user }) => {
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
+    // ปิด dropdown อื่นๆ เมื่อเปิด hamburger menu
+    setLangDropdownOpen(false);
+    setUserDropdownOpen(false);
   };
 
   const toggleLangDropdown = () => {
     setLangDropdownOpen(!langDropdownOpen);
+    // ปิด menu อื่นๆ
+    setMenuOpen(false);
+    setUserDropdownOpen(false);
   };
 
   const toggleUserDropdown = () => {
     setUserDropdownOpen(!userDropdownOpen);
+    // ปิด menu อื่นๆ
+    setMenuOpen(false);
+    setLangDropdownOpen(false);
   };
 
   const handleLogout = async () => {
@@ -30,6 +39,9 @@ const Header = ({ onLoginClick, user }) => {
     }
   };
 
+  const handleMenuItemClick = () => {
+    setMenuOpen(false); // ปิด menu เมื่อคลิกลิงก์
+  };
   return (
     <header className="header">
       <div className="header-left">
@@ -38,11 +50,11 @@ const Header = ({ onLoginClick, user }) => {
         </a>
         <nav className={`nav-menu ${menuOpen ? 'show' : ''}`}>
           <ul>
-            <li><a href="https://voice.botnoi.ai/marketplace/selectvoice" target="_blank" rel="noopener noreferrer">Voice Marketplace</a></li>
-            <li><a href="https://voice.botnoi.ai/tts/api-developer-v2" target="_blank" rel="noopener noreferrer">API</a></li>
-            <li><a href="https://voice.botnoi.ai/payment/quote" target="_blank" rel="noopener noreferrer">Pricing <span className="sale-badge">SALE</span></a></li>
-            <li><a href="https://botnoigroup.com/th/teamprice" target="_blank" rel="noopener noreferrer">Enterprise Pricing</a></li>
-            <li><a href="https://voice.botnoi.ai/" target="_blank" rel="noopener noreferrer">VOICE BOT</a></li>
+            <li><a href="https://voice.botnoi.ai/marketplace/selectvoice" target="_blank" rel="noopener noreferrer" onClick={handleMenuItemClick}>Voice Marketplace</a></li>
+            <li><a href="https://voice.botnoi.ai/tts/api-developer-v2" target="_blank" rel="noopener noreferrer" onClick={handleMenuItemClick}>API</a></li>
+            <li><a href="https://voice.botnoi.ai/payment/quote" target="_blank" rel="noopener noreferrer" onClick={handleMenuItemClick}>Pricing <span className="sale-badge">SALE</span></a></li>
+            <li><a href="https://botnoigroup.com/th/teamprice" target="_blank" rel="noopener noreferrer" onClick={handleMenuItemClick}>Enterprise Pricing</a></li>
+            <li><a href="https://voice.botnoi.ai/" target="_blank" rel="noopener noreferrer" onClick={handleMenuItemClick}>VOICE BOT</a></li>
           </ul>
         </nav>
       </div>

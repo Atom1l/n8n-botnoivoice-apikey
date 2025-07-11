@@ -404,11 +404,18 @@ main {
 
 /* Hamburger Menu Icon */
 .hamburger-menu {
-    display: none; /* Hidden by default on desktop */
+    display: none;
     font-size: 28px;
     color: var(--dark-text);
     cursor: pointer;
-    margin-left: 20px;
+    margin-left: 10px;
+    padding: 5px;
+    transition: color 0.3s ease;
+    flex-shrink: 0;
+}
+
+.hamburger-menu:hover {
+    color: var(--primary-purple);
 }
 
 
@@ -778,8 +785,12 @@ main {
         height: 60px;
     }
 
-    .header-left .nav-menu { /* Hide regular nav menu on smaller screens */
+    .nav-menu { /* Hide regular nav menu on smaller screens */
         display: none;
+    }
+
+    .hamburger-menu {
+        display: block; /* Show hamburger icon */
     }
 
     .header-right {
@@ -809,52 +820,69 @@ main {
     }
 
     .hamburger-menu {
-        display: block; /* Show hamburger icon */
-        margin-left: 5px;
+        margin-left: 8px;
         flex-shrink: 0;
+        font-size: 24px;
     }
 
     /* Mobile Navigation Menu */
     .nav-menu {
-        display: none; /* Hidden by default */
+        display: none;
         position: absolute;
-        top: 100%; /* Position below the header */
+        top: 100%;
         left: 0;
         width: 100%;
         background-color: #fff;
         box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        flex-direction: column; /* Stack menu items vertically */
-        align-items: center; /* Center items in the column */
-        padding: 10px 0;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
         border-top: 1px solid #eee;
-        z-index: 999; /* Ensure it's above content but below header */
+        z-index: 999;
+        max-height: 70vh;
+        overflow-y: auto;
     }
 
-    .nav-menu.show { /* Class added by JS to show the menu */
+    .nav-menu.show {
         display: flex;
     }
 
     .nav-menu ul {
-        flex-direction: column; /* Stack ul items vertically */
+        flex-direction: column;
         width: 100%;
         text-align: center;
+        padding: 0;
+        margin: 0;
     }
 
     .nav-menu li {
-        margin: 10px 0; /* Space out stacked menu items */
-        width: 100%; /* Make list item full width */
+        margin: 0;
+        width: 100%;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    .nav-menu li:last-child {
+        border-bottom: none;
     }
 
     .nav-menu a {
-        padding: 10px 0; /* Increase clickable area */
-        display: block; /* Make anchor tag block level */
+        padding: 15px 20px;
+        display: block;
+        font-size: 16px;
+        font-weight: 500;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .nav-menu a:hover {
+        background-color: var(--light-purple);
+        color: var(--primary-purple);
     }
 
     .nav-menu .new-badge,
     .nav-menu .sale-badge {
-        position: static; /* Remove absolute positioning on mobile */
-        margin-left: 5px; /* Add some space next to text */
-        display: inline-block; /* Keep them inline with text */
+        position: static;
+        margin-left: 8px;
+        display: inline-block;
     }
 
     .hero-section {
@@ -863,7 +891,7 @@ main {
     }
 
     .hero-content {
-        flex-direction: column-reverse; /* Image above text on smaller screens */
+        flex-direction: column; /* Text above image on smaller screens */
         text-align: center;
         padding: 0;
         margin: 0;
@@ -871,9 +899,10 @@ main {
 
     .hero-text {
         margin-right: 0;
-        margin-bottom: 40px; /* Space between text and image */
+        margin-bottom: 30px; /* Space between text and image */
         max-width: 100%; /* Full width for text */
         padding: 0 10px;
+        order: 1; /* Text first */
     }
 
     .hero-text h1 {
@@ -892,9 +921,10 @@ main {
     }
 
     .hero-image {
-        margin-bottom: 40px; /* Space between image and text */
+        margin-bottom: 20px;
         max-width: 100%; /* Full width for image */
         padding: 0 10px;
+        order: 2; /* Image second */
     }
 
     .bot-character {
@@ -1012,13 +1042,28 @@ main {
     }
 
     .hamburger-menu {
-        font-size: 22px;
-        margin-left: 5px;
+        font-size: 20px;
+        margin-left: 6px;
+        padding: 4px;
     }
 
     .hero-section {
         padding: 40px 20px; /* Smaller padding */
         overflow: hidden;
+    }
+
+    .hero-content {
+        flex-direction: column; /* Text above image */
+    }
+
+    .hero-text {
+        order: 1; /* Text first */
+        margin-bottom: 25px;
+    }
+
+    .hero-image {
+        order: 2; /* Image second */
+        margin-bottom: 15px;
     }
 
     .hero-text h1 {
@@ -1169,13 +1214,28 @@ main {
     }
 
     .hamburger-menu {
-        font-size: 20px;
+        font-size: 18px;
         margin-left: 4px;
+        padding: 3px;
     }
 
     .hero-section {
         padding: 30px 15px;
         overflow: hidden;
+    }
+
+    .hero-content {
+        flex-direction: column; /* Text above image */
+    }
+
+    .hero-text {
+        order: 1; /* Text first */
+        margin-bottom: 20px;
+    }
+
+    .hero-image {
+        order: 2; /* Image second */
+        margin-bottom: 10px;
     }
 
     .hero-text h1 {
