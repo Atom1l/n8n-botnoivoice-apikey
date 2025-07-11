@@ -20,7 +20,7 @@ const ApiKeySection = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch(`https://api-voice.botnoi.ai/db/dashboard/get_token?user_id=${uid}`);
+      const response = await fetch(`https://api-voice.botnoi.ai/db/dashboard/reset_token?user_id=${uid}`); 
       if (!response.ok) {
         throw new Error('Failed to fetch apikey');
       }

@@ -65,7 +65,6 @@ function AppRoutes() {
         isOpen={emailLoginModalOpen}
         onClose={closeEmailLoginModal}
       />
-
       <Footer />
     </div>
   );
