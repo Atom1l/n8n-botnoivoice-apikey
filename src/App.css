@@ -11,6 +11,21 @@
     --green-success: #4CAF50; /* For success messages */
 }
 
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* ให้สูงอย่างน้อยเท่า viewport */
+}
+
+.page-content {
+  flex: 1; /* ดัน footer ลงล่าง */
+}
+
 /* Base styles for body */
 body {
     font-family: 'IBM Plex Sans Thai', sans-serif;
@@ -39,7 +54,7 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 5%;
+    padding: 15px 2%;
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     position: relative; /* Needed for absolute positioning of mobile menu */
@@ -269,10 +284,12 @@ main {
 }
 
 .user-dropdown .logout-btn {
- color: #dc3545;
+ font-weight: bold !important;
+ color: #dc3545 !important;
  border-top: 1px solid #eee;
- margin-top: 4px;
  padding-top: 12px;
+ display: flex;
+ justify-content: center;
 }
 
 .user-dropdown .logout-btn:hover {
@@ -293,6 +310,7 @@ main {
 .selected-lang {
     display: flex;
     align-items: center;
+    margin-right: 15px;
     padding: 8px 12px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -382,7 +400,7 @@ main {
     background-color: #fff;
     color: var(--primary-purple);
     border: 1px solid var(--primary-purple);
-    margin-right: 10px;
+    margin-right: 20px;
 }
 
 .login-btn:hover {
@@ -416,6 +434,23 @@ main {
 
 .hamburger-menu:hover {
     color: var(--primary-purple);
+}
+.anon-auth a {
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    white-space: nowrap; /* Prevent buttons from wrapping text */
+    text-align: center;
+    display: none; /* Ensure padding works correctly */
+}
+.anon-auth{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
 }
 
 
@@ -801,18 +836,34 @@ main {
 
     .hamburger-menu {
         display: block; /* Show hamburger icon */
-        color: black !important;
     }
 
     .header-right {
         gap: 6px;
     }
 
+    .mobile-auth{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
     .user-info {
         min-width: 140px;
         max-width: 180px;
+        margin: 20px 5%;
         padding: 6px 10px;
         gap: 8px;
+    }
+
+    .logout-btn{
+        padding: 10px 35px;
+        color: white;
+        font-weight: bold;
+        background: linear-gradient(to right, #fd3838, rgb(206, 2, 2));
+        border: none;
+        border-radius: 25px;
     }
 
     .user-info .user-avatar {
@@ -894,6 +945,33 @@ main {
         position: static;
         margin-left: 8px;
         display: inline-block;
+    }
+
+    .anon-auth a {
+        padding: 10px 20px;
+        border-radius: 25px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 15px;
+        transition: all 0.3s ease;
+        white-space: nowrap; /* Prevent buttons from wrapping text */
+        text-align: center;
+        display: inline-block; /* Ensure padding works correctly */
+    }
+    .anon-login{
+        border: solid 2px var(--primary-purple);
+    }
+    .anon-signup{
+        background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+        color: white !important;
+        border: none;
+    }
+    .anon-auth{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 15px;
+        gap: 35px;
     }
 
     .hero-section {

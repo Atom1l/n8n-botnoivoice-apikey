@@ -68,18 +68,10 @@ const Header = ({ onLoginClick, user }) => {
                 <button className="logout-btn" onClick={handleLogout}>Log out</button>
               </li>
             ) : (
-              <>
-                <li className="mobile-auth">
-                  <a href="#" onClick={(e) => {
-                    e.preventDefault();
-                    onLoginClick();
-                    setMenuOpen(false);
-                  }}>Login</a>
-                </li>
-                <li className="mobile-auth">
-                  <a href="#">Sign Up</a>
-                </li>
-              </>
+              <div className='anon-auth'>
+                <a className='anon-login' href="#" onClick={(e) => {e.preventDefault(); onLoginClick(); setMenuOpen(false);}}>Login</a>
+                <a className='anon-signup' href="#">Sign Up</a>
+              </div>
             )}
           </ul>
         </nav>
@@ -122,7 +114,7 @@ const Header = ({ onLoginClick, user }) => {
           )}
         </div>
 
-        <div className="hamburger-menu" style={{ color: '#ff5722', fontSize: '24px' }} onClick={toggleMenu}>
+        <div className="hamburger-menu"  onClick={toggleMenu}>
           <i className={`fas ${menuOpen ? 'fa-times' : 'fa-bars'}`}></i>
         </div>
       </div>

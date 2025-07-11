@@ -15,7 +15,6 @@ function HomePage() {
     <>
       <HeroSection />
       <SocialIcons />
-      <Footer />
     </>
   );
 }
@@ -28,7 +27,6 @@ function AppRoutes() {
 
   useEffect(() => {
     if (user) {
-      // ถ้า login แล้ว ให้พาไปหน้า /apikey อัตโนมัติ
       navigate('/apikey');
     }
   }, [user, navigate]);
@@ -42,22 +40,21 @@ function AppRoutes() {
   const closeEmailLoginModal = () => setEmailLoginModalOpen(false);
 
   return (
-    <>
+    <div className="page-wrapper">
       <Header onLoginClick={openLoginModal} user={user} />
 
-      <Routes>
-        {/* ถ้า user ยังไม่ login ให้ไปหน้า Home */}
-        <Route
-          path="/"
-          element={!user ? <HomePage /> : <Navigate to="/apikey" replace />}
-        />
-
-        {/* หน้า apikey ต้อง login แล้วเท่านั้น */}
-        <Route
-          path="/apikey"
-          element={user ? <ApiKeySection /> : <Navigate to="/" replace />}
-        />
-      </Routes>
+      <main className="page-content">
+        <Routes>
+          <Route
+            path="/"
+            element={!user ? <HomePage /> : <Navigate to="/apikey" replace />}
+          />
+          <Route
+            path="/apikey"
+            element={user ? <ApiKeySection /> : <Navigate to="/" replace />}
+          />
+        </Routes>
+      </main>
 
       <LoginModal
         isOpen={loginModalOpen}
@@ -68,10 +65,12 @@ function AppRoutes() {
         isOpen={emailLoginModalOpen}
         onClose={closeEmailLoginModal}
       />
+
       <Footer />
-    </>
+    </div>
   );
 }
+
 
 function App() {
   return (
