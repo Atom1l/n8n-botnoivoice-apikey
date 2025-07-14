@@ -10,6 +10,9 @@ import ApiKeySection from './ApiKeySection';
 import { useAuth } from './useAuth';
 import './App.css';
 
+import './i18n';
+import { LanguageProvider } from './Languagecontext';
+
 function HomePage({onLoginClick}) {
   return (
     <>
@@ -73,9 +76,11 @@ function AppRoutes() {
 
 function App() {
   return (
-    <Router>
-      <AppRoutes />
-    </Router>
+    <LanguageProvider>
+      <Router>
+        <AppRoutes />
+      </Router>
+    </LanguageProvider>
   );
 }
 

@@ -1,21 +1,24 @@
 import React from 'react';
 import './App.css';
 
+import { useTranslation } from 'react-i18next';
 
 const HeroSection = ({ onLoginClick }) => {
+
+  const { t } = useTranslation();
 
   return (
     <main className="hero-section">
       <div className="hero-content">
         <div className="hero-text">
-          <div className="small-text">Welcome to BOTNOI VOICE N8N</div>
-          <h1>Convert Text to Speech with N8N</h1>
-          <p>Easily generate realistic voices for every step in your automation process with our n8n node. Choose from over <strong>300 voices</strong> and <strong>10+ languages</strong>. Perfect for voiceovers, ads, educational content, podcasts, articles, lifestyle media, or audiobooks. Easy to use, and generate lifelike voices anytime, anywhere.</p>
+          <div className="small-text">{t('welcome')}</div>
+          <h1 dangerouslySetInnerHTML={{ __html: t('convert') }} />
+          <p dangerouslySetInnerHTML={{ __html: t('description') }} />
           <div className="hero-buttons">
             <a href="#" className="primary-btn" onClick={(e) => {
               e.preventDefault();
               onLoginClick();
-            }}>Try for Free</a>
+            }}>{t('tryfree')}</a>
           </div>
         </div>
         <div className="hero-image">

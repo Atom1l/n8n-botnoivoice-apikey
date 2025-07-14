@@ -11,6 +11,12 @@
     --green-success: #4CAF50; /* For success messages */
 }
 
+.prompt {
+    font-family: "Prompt", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
 html, body {
   height: 100%;
   margin: 0;
@@ -488,7 +494,7 @@ main {
     color: var(--primary-purple);
     font-size: 16px;
     font-weight: 600;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
     text-transform: uppercase;
 }
 
@@ -496,18 +502,27 @@ main {
     font-size: 48px;
     font-weight: 700;
     line-height: 1.2;
-    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .hero-text p {
+    max-width: 520px;
+    text-align: justify;
     font-size: 18px;
     color: var(--gray-text);
+    margin-top: 0px;
     margin-bottom: 30px;
 }
 
 .hero-buttons {
+    width: max-content;
     display: flex;
     gap: 15px;
+}
+
+.hero-buttons a{
+    font-size: 1.2rem;
 }
 
 .hero-image {
@@ -695,6 +710,19 @@ main {
 
 .terms-text a:hover {
     text-decoration: underline;
+}
+
+.login-google{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-google svg{
+    margin-right: 5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
 }
 
 /* --- Footer Styles --- */
@@ -1394,6 +1422,7 @@ main {
 }
 
 .api-key-card {
+    position: relative;
     background-color: #fff;
     padding: 40px;
     border-radius: 12px;
@@ -1406,6 +1435,7 @@ main {
 .api-key-card h2 {
     font-size: 32px;
     color: var(--dark-text);
+    margin-top: 10px;
     margin-bottom: 15px;
     font-weight: 700;
 }
@@ -1482,7 +1512,6 @@ main {
     opacity: 0; /* Hidden by default */
     transition: opacity 0.3s ease-in-out;
     display: block; /* Ensure it takes its own line */
-    height: 0; /* Collapse height when hidden */
     overflow: hidden; /* Hide overflow when height is 0 */
 }
 

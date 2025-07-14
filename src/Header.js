@@ -1,13 +1,20 @@
 // Header.js
 import React, { useState } from 'react';
 import { useAuth } from './useAuth';
+import { useLanguage } from './Languagecontext'; // ✅ เพิ่ม
 import './App.css';
+
+
+import { useTranslation } from 'react-i18next';
 
 const Header = ({ onLoginClick, user }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
   const { logout } = useAuth();
+  const { language, changeLanguage } = useLanguage(); // ✅ ใช้ context
+
+  const { t } = useTranslation();
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -40,6 +47,14 @@ const Header = ({ onLoginClick, user }) => {
     setMenuOpen(false);
   };
 
+  const handleSelectLang = (lang) => {
+    changeLanguage(lang);
+    setLangDropdownOpen(false);
+  };
+
+  const currentFlag = language === 'th' ? '/img/TH.svg' : '/img/EN.svg';
+  const currentLabel = language.toUpperCase();
+
   return (
     <header className="header">
       <div className="header-left">
@@ -49,11 +64,11 @@ const Header = ({ onLoginClick, user }) => {
 
         <nav className={`nav-menu ${menuOpen ? 'show' : ''}`}>
           <ul>
-            <li><a href="https://voice.botnoi.ai/marketplace/selectvoice" target="_blank" rel="noopener noreferrer" onClick={handleMenuItemClick}>Voice Marketplace</a></li>
-            <li><a href="https://voice.botnoi.ai/tts/api-developer-v2" target="_blank" rel="noopener noreferrer" onClick={handleMenuItemClick}>API</a></li>
-            <li><a href="https://voice.botnoi.ai/payment/quote" target="_blank" rel="noopener noreferrer" onClick={handleMenuItemClick}>Pricing <span className="sale-badge">SALE</span></a></li>
-            <li><a href="https://botnoigroup.com/th/teamprice" target="_blank" rel="noopener noreferrer" onClick={handleMenuItemClick}>Enterprise Pricing</a></li>
-            <li><a href="https://voice.botnoi.ai/" target="_blank" rel="noopener noreferrer" onClick={handleMenuItemClick}>VOICE BOT</a></li>
+            <li><a href="https://voice.botnoi.ai/marketplace/selectvoice" target="_blank" rel="noopener noreferrer" onClick={handleMenuItemClick}>{t('voicemarketplace')}</a></li>
+            <li><a href="https://voice.botnoi.ai/tts/api-developer-v2" target="_blank" rel="noopener noreferrer" onClick={handleMenuItemClick}>{t('api')}</a></li>
+            <li><a href="https://voice.botnoi.ai/payment/quote" target="_blank" rel="noopener noreferrer" onClick={handleMenuItemClick}>{t('pricing')} <span className="sale-badge">{t('sale')}</span></a></li>
+            <li><a href="https://botnoigroup.com/th/teamprice" target="_blank" rel="noopener noreferrer" onClick={handleMenuItemClick}>{t('enterprisepricing')}</a></li>
+            <li><a href="https://voice.botnoi.ai/" target="_blank" rel="noopener noreferrer" onClick={handleMenuItemClick}>{t('voicebot')}</a></li>
 
             {/* ✅ Mobile-only user/login block */}
             {user ? (
@@ -65,12 +80,12 @@ const Header = ({ onLoginClick, user }) => {
                     <span className="user-uid">{user.uid}</span>
                   </div>
                 </div>
-                <button className="logout-btn" onClick={handleLogout}>Log out</button>
+                <button className="logout-btn" onClick={handleLogout}>{t('logout')}</button>
               </li>
             ) : (
               <div className='anon-auth'>
-                <a className='anon-login' href="#" onClick={(e) => {e.preventDefault(); onLoginClick(); setMenuOpen(false);}}>Login</a>
-                <a className='anon-signup' href="#">Sign Up</a>
+                <a className='anon-login' href="#" onClick={(e) => { e.preventDefault(); onLoginClick(); setMenuOpen(false); }}>{t('loginheader')}</a>
+                <a className='anon-signup' href="#">{t('signup')}</a>
               </div>
             )}
           </ul>
@@ -78,14 +93,20 @@ const Header = ({ onLoginClick, user }) => {
       </div>
 
       <div className="header-right">
+        {/* ✅ Language Selector */}
         <div className={`lang-dropdown ${langDropdownOpen ? 'active' : ''}`}>
           <div className="selected-lang" onClick={toggleLangDropdown}>
-            <img src="/img/EN.svg" alt="English Flag" />
-            <span>EN</span>
+            <img src={currentFlag} alt={`${currentLabel} Flag`} />
+            <span>{currentLabel}</span>
             <div className="arrow-down"></div>
           </div>
           <ul className={`lang-options ${langDropdownOpen ? 'show' : ''}`}>
-            <li><img src="/img/EN.svg" alt="English Flag" /> <span>EN</span></li>
+            <li onClick={() => handleSelectLang('en')}>
+              <img src="/img/EN.svg" alt="English Flag" /> <span>EN</span>
+            </li>
+            <li onClick={() => handleSelectLang('th')}>
+              <img src="/img/TH.svg" alt="Thai Flag" /> <span>TH</span>
+            </li>
           </ul>
         </div>
 
@@ -100,7 +121,7 @@ const Header = ({ onLoginClick, user }) => {
               </div>
               <div className="dropdown-arrow"></div>
               <div className={`user-dropdown ${userDropdownOpen ? 'show' : ''}`}>
-                <button className="logout-btn" onClick={handleLogout}>Log out</button>
+                <button className="logout-btn" onClick={handleLogout}>{t('logout')}</button>
               </div>
             </div>
           ) : (
@@ -108,16 +129,16 @@ const Header = ({ onLoginClick, user }) => {
               <a href="#" className="login-btn" onClick={(e) => {
                 e.preventDefault();
                 onLoginClick();
-              }}>Login</a>
+              }}>{t('loginheader')}</a>
               <a href="#" className="signup-btn" onClick={(e) => {
                 e.preventDefault();
                 onLoginClick();
-              }}>Sign Up</a>
+              }}>{t('signup')}</a>
             </>
           )}
         </div>
 
-        <div className="hamburger-menu"  onClick={toggleMenu}>
+        <div className="hamburger-menu" onClick={toggleMenu}>
           <i className={`fas ${menuOpen ? 'fa-times' : 'fa-bars'}`}></i>
         </div>
       </div>

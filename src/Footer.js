@@ -2,7 +2,12 @@ import React from 'react';
 import './App.css';
 
 
+import { useTranslation } from 'react-i18next';
+
+
 const Footer = () => {
+  const { t } = useTranslation();
+
   return (
     <footer className="main-footer">
       <div className="footer-container">
@@ -17,39 +22,39 @@ const Footer = () => {
             <a href="https://www.youtube.com/@BOTNOIGROUP" aria-label="YouTube" target="_blank" rel="noopener noreferrer"><i className="fab fa-youtube"></i></a>
           </div>
           <a href="https://www.botnoigroup.com" className="footer-link-text">www.botnoigroup.com</a>
-          <a href="#" className="footer-link-text">Privacy & Policy</a>
+          <a href="#" className="footer-link-text">{t('privacypolicy')}</a>
         </div>
 
         <div className="footer-col">
           <h3>BOTNOI VOICE</h3>
           <ul>
-            <li><a href="https://voice.botnoi.ai/marketplace/selectvoice" target="_blank" rel="noopener noreferrer">Voice Marketplace</a></li>
-            <li><a href="https://voice.botnoi.ai/tts/api-developer-v2" target="_blank" rel="noopener noreferrer">API</a></li>
-            <li><a href="https://voice.botnoi.ai/payment/quote" target="_blank" rel="noopener noreferrer">Pricing <span className="sale-badge">SALE</span></a></li>
-            <li><a href="https://botnoigroup.com/th/teamprice" target="_blank" rel="noopener noreferrer">Enterprise Pricing</a></li>
-            <li><a href="https://voice.botnoi.ai/" target="_blank" rel="noopener noreferrer">VOICE BOT</a></li>
+            <li><a href="https://voice.botnoi.ai/marketplace/selectvoice" target="_blank" rel="noopener noreferrer">{t('voicemarketplace')}</a></li>
+            <li><a href="https://voice.botnoi.ai/tts/api-developer-v2" target="_blank" rel="noopener noreferrer">{t('api')}</a></li>
+            <li><a href="https://voice.botnoi.ai/payment/quote" target="_blank" rel="noopener noreferrer">{t('pricing')}</a></li>
+            <li><a href="https://botnoigroup.com/th/teamprice" target="_blank" rel="noopener noreferrer">{t('enterprisepricing')}</a></li>
+            <li><a href="https://voice.botnoi.ai/" target="_blank" rel="noopener noreferrer">{t('voicebot')}</a></li>
           </ul>
         </div>
 
         <div className="footer-col">
-          <h3>Menu</h3>
+          <h3>{t('menu')}</h3>
           <ul>
-            <li><a href="https://voice.botnoi.ai/payment/quote" target="_blank" rel="noopener noreferrer">Buy Package</a></li>
-            <li><a href="https://voice.botnoi.ai/payment/quote" target="_blank" rel="noopener noreferrer">Buy Points</a></li>
-            <li><a href="https://botnoigroup.com/th/botnoivoice/doc/create-project" target="_blank" rel="noopener noreferrer">Documentation</a></li>
-            <li><a href="https://botnoigroup.com/th/botnoivoice/help-center" target="_blank" rel="noopener noreferrer">Report Issue</a></li>
+            <li><a href="https://voice.botnoi.ai/payment/quote" target="_blank" rel="noopener noreferrer">{t('package')}</a></li>
+            <li><a href="https://voice.botnoi.ai/payment/quote" target="_blank" rel="noopener noreferrer">{t('points')}</a></li>
+            <li><a href="https://botnoigroup.com/th/botnoivoice/doc/create-project" target="_blank" rel="noopener noreferrer">{t('documentation')}</a></li>
+            <li><a href="https://botnoigroup.com/th/botnoivoice/help-center" target="_blank" rel="noopener noreferrer">{t('reportissue')}</a></li>
           </ul>
         </div>
 
         <div className="footer-col">
-          <h3>Tools</h3>
+          <h3>{t('tool')}</h3>
           <ul>
-            <li><a href="https://voice.botnoi.ai/languages/english" target="_blank" rel="noopener noreferrer"><i className="fas fa-circle small-dot"></i> English Text to Speech</a></li>
-            <li><a href="https://voice.botnoi.ai/languages/thai" target="_blank" rel="noopener noreferrer"><i className="fas fa-circle small-dot"></i> Thai Text to Speech</a></li>
-            <li><a href="https://voice.botnoi.ai/languages/chinese" target="_blank" rel="noopener noreferrer"><i className="fas fa-circle small-dot"></i> Chinese Text to Speech</a></li>
-            <li><a href="https://voice.botnoi.ai/languages/japanese" target="_blank" rel="noopener noreferrer"><i className="fas fa-circle small-dot"></i> Japanese Text to Speech</a></li>
-            <li><a href="https://voice.botnoi.ai/languages/vietnamese" target="_blank" rel="noopener noreferrer"><i className="fas fa-circle small-dot"></i> Vietnamese Text to Speech</a></li>
-            <li><a href="https://voice.botnoi.ai/languages/indonesian" target="_blank" rel="noopener noreferrer"><i className="fas fa-circle small-dot"></i> Indonesian Text to Speech</a></li>
+            <li><a href="https://voice.botnoi.ai/languages/english" target="_blank" rel="noopener noreferrer"><i className="fas fa-circle small-dot"></i> {t('endtts')}</a></li>
+            <li><a href="https://voice.botnoi.ai/languages/thai" target="_blank" rel="noopener noreferrer"><i className="fas fa-circle small-dot"></i> {t('thtts')}</a></li>
+            <li><a href="https://voice.botnoi.ai/languages/chinese" target="_blank" rel="noopener noreferrer"><i className="fas fa-circle small-dot"></i> {t('chtts')}</a></li>
+            <li><a href="https://voice.botnoi.ai/languages/japanese" target="_blank" rel="noopener noreferrer"><i className="fas fa-circle small-dot"></i> {t('jptts')}</a></li>
+            <li><a href="https://voice.botnoi.ai/languages/vietnamese" target="_blank" rel="noopener noreferrer"><i className="fas fa-circle small-dot"></i> {t('vntts')}</a></li>
+            <li><a href="https://voice.botnoi.ai/languages/indonesian" target="_blank" rel="noopener noreferrer"><i className="fas fa-circle small-dot"></i> {t('idntts')}</a></li>
           </ul>
         </div>
       </div>

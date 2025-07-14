@@ -3,9 +3,12 @@ import { useLocation } from 'react-router-dom';
 import { useAuth } from './useAuth';
 import './App.css';
 
+import { useTranslation } from 'react-i18next';
+
 const ApiKeySection = () => {
   const location = useLocation();
   const { user } = useAuth();
+  const { t } = useTranslation();
 
   // รับ apikey จาก location state (ถ้ามี)
   const apiKeyFromLogin = location.state?.apikey || '';
@@ -82,8 +85,8 @@ const ApiKeySection = () => {
   return (
     <main className="api-key-container">
       <div className="api-key-card">
-        <h2>Your API Keys</h2>
-        <p>You can use the API Keys to generate voices as needed at <a href="#" className="api-docs-link">API Documentation</a></p>
+        <h2>{t('yourapikey')}</h2>
+        <p>{t('apikeydescription')} <a href="#" className="api-docs-link">{t('apidocs')}</a></p>
         <div className="api-key-box">
           <input 
             type="text" 
@@ -109,7 +112,7 @@ const ApiKeySection = () => {
           </button>
         </div>
         <span className={`copy-message ${showCopyMessage ? 'show' : ''}`} id="copyMessage">
-          Copied!
+          {t('copied')}
         </span>
       </div>
     </main>
