@@ -139,7 +139,7 @@ main {
     white-space: nowrap;
 }
 .nav-menu .sale-badge {
-    background-color: #00C853;
+    background-color: red;
     color: white;
     font-size: 10px;
     font-weight: 700;
@@ -507,7 +507,7 @@ main {
 }
 
 .hero-text p {
-    max-width: 520px;
+    max-width: 510px;
     text-align: justify;
     font-size: 18px;
     color: var(--gray-text);
